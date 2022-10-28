@@ -18,8 +18,7 @@ Once we grab all of the listings, we will place them into a list with the follow
 #PSA 10 Link
 #url = 'https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2334524.m570.l1313&_nkw=Sylveon+V+TG14+psa+10&_sacat=0&LH_TitleDesc=0&rt=nc&_odkw=Sylveon+V+TG14+psa&_osacat=0&LH_Complete=1&LH_Sold=1'
 #Only TG14 Link
-url = 'https://www.ebay.com/sch/i.html?_from=R40&_nkw=Sylveon+V+TG14&_sacat=0&LH_TitleDesc=0&rt=nc&LH_Complete=1&LH_Sold=1&_ipg=240'
-
+url = 'https://www.ebay.com/sch/i.html?_from=R40&_nkw=charizard+upc&_sacat=2536&rt=nc&LH_Sold=1&LH_Complete=1&_ipg=240'
 #Create a function that will parse the URL and requests the data from page and makes soup variable so we can pocess. 
 def get_data(url):
     r = requests.get(url)
@@ -75,8 +74,8 @@ def parse(soup):
 
 list = get_data(url)
 
-keywords = ['Sylveon', 'TG14'] 
-filteredList = requiredWords(list, keywords)
+keywords = ['PSA', 'BGS', 'graded'] 
+filteredList = excludeWords(list, keywords)
 saveList(filteredList)
-print('Filtered:', getAverage(filteredList))
-print('No Filter:', getAverage(list))
+print('Filtered:', getAverage(filteredList), ' sample size:', len(filteredList))
+print('No Filter:', getAverage(list), ' sample size:', len(list))

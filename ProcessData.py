@@ -37,8 +37,25 @@ def requiredWords(list, keywords):
             continue
 
         newList.append(listing)
-    
     return newList
+
+#Goes through the dictonary and remove listings that have instances of our keywords
+def excludeWords(list, keywords):
+    newList = []
+    for listing in list:
+        title = listing['title']
+
+        negativeHit = False
+        for word in keywords:
+            if word.lower() in title.lower():
+                negativeHit = True
+                break
+        
+        if negativeHit:
+            continue
+        newList.append(listing)
+    return newList
+
 
 def remove_emojis(string):
     emoj = re.compile("["
@@ -55,7 +72,9 @@ def remove_emojis(string):
         u"\u2640-\u2642" 
         u"\u2600-\u2B55"
         u"\u200d"
+        u"\u23ed"
         u"\u23cf"
+        u"\u23ee"
         u"\u23e9"
         u"\u231a"
         u"\ufe0f"  # dingbats
